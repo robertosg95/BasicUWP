@@ -1,0 +1,116 @@
+﻿<Page
+    x:Class="App1.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:App1"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Name="MainGrid" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+          MinWidth="10"
+          MinHeight="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Grid Name="SecondGrid" Background="White" Grid.RowSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0" Grid.ColumnSpan="4" x:Name="textResult" TextWrapping="Wrap" Text="Simple Calculator" VerticalAlignment="Bottom" />
+            <TextBox Grid.Row="1" Grid.ColumnSpan="4"
+            IsReadOnly="True"
+            x:Name="result" TextWrapping="NoWrap" Text="" VerticalAlignment="Bottom" />
+            <Button Grid.Row="2" Grid.Column="0" Click="btn7_Click" x:Name="btn7" Content="7" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" />
+            <Button Grid.Row="2" Grid.Column="1" Click="btn8_Click" x:Name="btn8" Content="8" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+            <Button Grid.Row="2" Grid.Column="2" Click="btn9_Click" x:Name="btn9" Content="9" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+            <Button Grid.Row="2" Grid.Column="3" Click="btnDiv_Click" x:Name="btnDiv" Content="/" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" />
+            <Button Grid.Row="3" Grid.Column="0" Click="btn4_Click" x:Name="btn4" Content="4" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" />
+            <Button Grid.Row="3" Grid.Column="1" Click="btn5_Click" x:Name="btn5" Content="5" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" />
+            <Button Grid.Row="3" Grid.Column="2" Click="btn6_Click" x:Name="btn6" Content="6" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch"/>
+            <Button Grid.Row="3" Grid.Column="3" Click="btnTimes_Click" x:Name="btnTimes" Content="x" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" />
+            <Button Grid.Row="4" Grid.Column="0" Click="btn1_Click" x:Name="btn1" Content="1" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" />
+            <Button Grid.Row="4" Grid.Column="1" Click="btn2_Click" x:Name="btn2" Content="2" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" />
+            <Button Grid.Row="4" Grid.Column="2" Click="btn3_Click"  x:Name="btn3" Content="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+            <Button Grid.Row="4" Grid.Column="3" Click="btnMinus_Click" x:Name="btnMinus" Content="-" HorizontalAlignment="Stretch"  VerticalAlignment="Stretch" />
+            <Button Grid.Row="5" Grid.Column="0" Click="btnEqual_Click" x:Name="btnEqual" Content="=" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+            <Button Grid.Row="5" Grid.Column="1" Click="btn0_Click" x:Name="btn0" Content="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+            <Button Grid.Row="5" Grid.Column="2" Click="btnClear_Click" x:Name="btnClear" Content="C" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+            <Button Grid.Row="5" Grid.Column="3" Click="btnPlus_Click" x:Name="btnPlus" Content="+" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+            
+
+
+        </Grid>
+
+        <Grid Name="ThirdGrid" Background="White" Grid.Column="1" Visibility="Collapsed">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <TextBlock  Grid.Row="0" Grid.Column="0"  x:Name="history"  TextWrapping="Wrap" Text="History:" VerticalAlignment="Stretch"  ScrollViewer.VerticalScrollBarVisibility="Visible"/>
+        </Grid>
+
+        <Grid Name="FourthGrid" Background="White" Grid.Row="1" Grid.Column="1" Visibility="Collapsed">
+            <Button Background="Aquamarine" Click="btnExplanation_Click" x:Name="btnExplanation" Content="Explanation" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
+        </Grid>
+
+
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="VisualStateGroup">
+                <VisualState x:Name="VisualStatePhone">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="0"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="ThirdGrid.Visibility" Value="Collapsed" />
+                        <Setter Target="SecondGrid.ColumnSpan" Value="2" />
+                        <Setter Target="ThirdGrid.RowSpan" Value="2" />
+                    </VisualState.Setters>
+                </VisualState>
+
+                <VisualState x:Name="VisualStateTablet">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="600"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="ThirdGrid.Visibility" Value="Visible" />
+                        <Setter Target="SecondGrid.ColumnSpan" Value="1" />
+                        <Setter Target="ThirdGrid.RowSpan" Value="2" />
+                    </VisualState.Setters>
+                </VisualState>
+
+                <VisualState x:Name="VisualStateDesktop">
+                    <VisualState.StateTriggers>
+                        <AdaptiveTrigger MinWindowWidth="800"/>
+                    </VisualState.StateTriggers>
+                    <VisualState.Setters>
+                        <Setter Target="ThirdGrid.Visibility" Value="Visible" />
+                        <Setter Target="SecondGrid.ColumnSpan" Value="1" />
+                        <Setter Target="ThirdGrid.RowSpan" Value="1" />
+                        <Setter Target="FourthGrid.Visibility" Value="Visible" />
+                    </VisualState.Setters>
+                </VisualState>
+
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
+
+    </Grid>
+</Page>
